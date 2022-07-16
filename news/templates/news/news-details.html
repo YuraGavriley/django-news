@@ -1,0 +1,52 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "news/news_details.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-frame">
+        <div class="caption">
+            <h2>{{ news.title }}</h2><br>
+        </div>
+        <div>
+            <img src={{ news.image.url }} alt="{{ news.title }}"><br>
+        </div>
+        <div class="news-content">
+            <p>{{ news.info|linebreaks }}</p>
+        </div>
+        <div>
+            <h4>The article by {{ news.journalist }}<h4>
+        </div>
+    </div>
+
+    <section class="users_comments">
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <h2>{{ comment.user_name }}</h2>
+                    <p>{{ comment.text|linebreaks }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </section>
+
+    <section class="comment">
+        <h2>Your Comment<h2>
+        <form action="{% url "news-details" news.slug %}" method="POST">
+            {% csrf_token %}
+            <div class="comment-elems">
+            {% for comment_field in comment_form %}
+                {{ comment_field.label_tag }}
+                {{ comment_field }}
+                {{ comment_field.errors }}
+            {% endfor %}
+            </div>
+            <button>Send Comment</button>
+        </form>
+    </section>
+{% endblock %}

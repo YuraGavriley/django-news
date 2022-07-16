@@ -1,0 +1,36 @@
+{% extends "news/base.html" %}
+{% load static %}
+
+{% block title %}My News{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "news/latest_news.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section id="latest-news">
+        <div class="caption">
+            <h2>Latest News</h2>
+        </div>
+        <ul>
+            {% for news_item in news %}
+                <li class="news-item">
+                    <div class="news-summary">
+                        <div class="news-image">
+                            <a href="{% url "news-details" news_item.slug %}">
+                                <img src={{ news_item.image.url }} alt="{{ news_item.title }}">
+                            
+                                <div class="news-info">
+                                    <h2>{{ news_item.title }}</h2>
+                                    <h3>Location: {{ news_item.location }}</h3>
+                                    <h4>Author of the article: {{ news_item.journalist }}</h4>
+                                    <p>| {{ news_item.category }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

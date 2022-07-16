@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  
+  
+}
+body {
+  background-color: #eeeeee;
+}
+#main-navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ffb703;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#main-navigation li {
+  float: left;
+
+}
+
+#main-navigation li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 15px 17px;
+  text-decoration: none;
+}
+
+#main-navigation li a:hover,
+#main-navigation li a:active {
+  background-color: rgb(255, 153, 0);
+}
+
+
+
